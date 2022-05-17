@@ -231,53 +231,42 @@
 
         <div class="col l6 m6 s12">
           <div class="card teal darken-3 white-text">
-            <div class="card-stacked">
-              <div class="card-metrics card-metrics-static">
-                <div class="card-metric">
-                  <div class="card-metric-title">CPU</div>
-                  <div class="card-metric-value">24%</div>
-                </div>
-              </div>
+            <div class="card-content">
+              <span class="card-title">CPU<i class="material-icons right large">domain</i></span>
+              <p style="color: white;">{{ data["cpu_percent"] }}%</p>
             </div>
           </div>
         </div>
 
         <div class="col l6 m6 s12">
           <div class="card teal darken-3 white-text">
-            <div class="card-stacked darken-4">
-              <div class="card-metrics card-metrics-static">
-                <div class="card-metric">
-                  <div class="card-metric-title">Memory</div>
-                  <div class="card-metric-value">65%</div>
-                </div>
-              </div>
+            <div class="card-content">
+              <span class="card-title">Memory<i class="material-icons right large">memory</i></span>
+              <p style="color: white;">{{ data["memory_used"] }}%</p>
             </div>
           </div>
         </div>
-      </div>
 
   </main>
   <footer class="page-footer">
     <div class="container">
       <div class="row">
-        <div class="col s6 m4">
-          <h5>Add a logo later here</h5>
-          <ul>
-            <li><a href="#!">HII~</a></li>
-            <li><a href="#!">HOO~</a></li>
-          </ul>
+        <div class="col s12 m6">
+          <p>The mission of the Molecular Genomics Core (MGC) is to provide services for industry-standard and state-of-the-art molecular and genomic assays in support of USC Norris investigators working across the continuum of basic, translational, clinical and population sciences.
+            </p>
+            <p><i class="material-icons chevron">location_on</i> 1450 Biggy Street, CA 90012</p>
         </div>
-        <div class="col s6 m4">
+        <div class="col s6 m3">
           <h5>About USC MGC</h5>
           <ul>
-            <li><a href="#!">Home page</a></li>
-            <li><a href="#!">Service</a></li>
+            <li><a href="https://uscnorriscancer.usc.edu/molecular-genomics-core/">Home page</a></li>
+            <li><a href="https://uscnorriscancer.usc.edu/wp-content/uploads/2021/05/MGC-Price-List_FINAL.pdf">Service</a></li>
           </ul>
         </div>
 
-        <div class="col s6 m4">
+        <div class="col s6 m3">
           <p>USC Genomics Core, single cell service</p>
-          <h5 black-text>Every sequence make a tile on path.</p>
+          <h5 black-text>Every sequence makes a tile on path.</p>
         </div>
 
       </div>
