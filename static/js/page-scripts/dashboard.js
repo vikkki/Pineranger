@@ -4,7 +4,7 @@
 
     // Main Toggle Line Chart
 
-    fetch("static/js/data.json")
+    fetch("history_line_data")
       .then(res => res.json())
       .then(data => {
         console.log("2", data);
@@ -149,12 +149,12 @@
     doughnutTooltip.callbacks = { footer: percentageFooterCallback };
     delete doughnutTooltip.mode;
     
-    var d = fetch("history_line_data")
-      .then(res => res.json())
-      .then(data => {
-        console.log("history_line_data yes, ", data[0]["a"]);
-      })
-      .catch(err => console.log("Fetch history_line_data failed"))
+    //var d = fetch("history_line_data")
+     // .then(res => res.json())
+     // .then(data => {
+    //    console.log("history_line_data yes, ", data[0]["a"]);
+    //  })
+     // .catch(err => console.log("Fetch history_line_data failed"))
 
 
     var doughnutChart = $('#doughnut-chart');
