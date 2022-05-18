@@ -1,0 +1,17 @@
+[
+    {
+        "user": 1,
+        "name": "Alice",
+        "age": 100
+    },
+    {
+        "user": 2,
+        "name": "Bob",
+        "age": 101
+    },
+    {
+        "user": 3,
+        "name": "Chill",
+        "age": 102
+    }
+]

@@ -1,299 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="msapplication-tap-highlight" content="no">
-  <meta name="description" content="">
-  <title>Pineranger</title>
-  <link href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css" rel="stylesheet">
-  <link href="{{ url_for('static', filename='css/flag-icon-css/css/flag-icon.min.css') }}" rel="stylesheet">
-  <!-- Fullcalendar-->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.css" rel="stylesheet">
-  <!-- Materialize-->
-  <link href="{{ url_for('static', filename='css/admin-materialize.min.css') }}" rel="stylesheet">
-  <!-- Material Icons-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
+{% block content %}
 
-<body>
-  <header>
-    <div class="navbar-fixed">
-      <nav class="navbar white">
-        <div class="nav-wrapper">
-          <a href="#!" class="brand-logo grey-text text-darken-4">Pineranger@USCMGC</a>
-          <ul id="nav-mobile" class="right">
-            <li class="hide-on-med-and-down"><a href="https://pomofocus.io/">Tomato timer!</a>
-            </li>
-            <li class="hide-on-med-and-down"><a href="#!" data-target="dropdown1"
-                class="dropdown-trigger waves-effect"><i class="material-icons">notifications</i></a></li>
-          </ul><a href="#!" data-target="sidenav-left" class="sidenav-trigger left"><i
-              class="material-icons black-text">menu</i></a>
-        </div>
-      </nav>
-    </div>
-    <ul id="sidenav-left" class="sidenav teal lighten-1">
-      <li><a href="{{ url_for('index')}}" class="logo-container">Admin<i class="material-icons left">spa</i></a></li>
-      <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-          <li class="bold waves-effect active"><a class="collapsible-header">Summary<i
-                class="material-icons chevron">chevron_left</i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="{{ url_for('index')}}" class="waves-effect active">Dashboard<i
-                      class="material-icons">dashboard</i></a></li>
-                <li><a href="#" class="waves-effect">Notes and Todos<i class="material-icons">chat</i></a></li>
-              </ul>
-            </div>
-          </li>
+<div class="container">
+  <div class="row equal-height-grid">
 
-          <li class="bold waves-effect"><a class="collapsible-header">Pipelines<i
-                class="material-icons chevron">chevron_left</i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="#" class="waves-effect">All tasks<i class="material-icons">show_chart</i></a></li>
-                <li><a href="#" class="waves-effect">GEX 3' Prime<i class="material-icons">chevron_right</i></a></li>
-                <li><a href="#" class="waves-effect">Multiomic<i class="material-icons">chevron_right</i></a></li>
-                <li><a href="#" class="waves-effect">5' Prime<i class="material-icons">chevron_right</i></a></li>
-                <li><a href="#" class="waves-effect">Visium<i class="material-icons">chevron_right</i></a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="bold waves-effect"><a class="collapsible-header">Calendar<i
-                class="material-icons chevron">chevron_left</i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="#" class="waves-effect">Calendar<i class="material-icons">cloud</i></a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="bold waves-effect"><a class="collapsible-header">Account<i
-                class="material-icons chevron">chevron_left</i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><a href="#" class="waves-effect">Log In<i class="material-icons">person</i></a></li>
-                <li><a href="#" class="waves-effect">Settings<i class="material-icons">settings</i></a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <div id="dropdown1" class="dropdown-content notifications">
-      <div class="notifications-title">notifications</div>
+    <div class="col l9 s12">
+
       <div class="card">
-        <div class="card-content"><span class="card-title">Daily Traffic Update</span>
-          <p>Content</p>
+        <div class="card-metrics card-metrics-toggle card-metrics-centered">
+          <div class="card-metric waves-effect active" data-metric="revenue">
+            <div class="card-metric-title">Sequenced</div>
+            <div class="card-metric-value">123,456M</div>
+            <div class="card-metric-change">
+              <i class="material-icons">keyboard_arrow_up</i>
+              12%
+            </div>
+          </div>
+          <div class="card-metric waves-effect" data-metric="users">
+            <div class="card-metric-title">Projects</div>
+            <div class="card-metric-value">233</div>
+            <div class="card-metric-change">
+              <i class="material-icons">keyboard_arrow_up</i>
+              9%
+            </div>
+          </div>
+          <div class="card-metric waves-effect" data-metric="ctr">
+            <div class="card-metric-title">Processed Samples</div>
+            <div class="card-metric-value">699</div>
+            <div class="card-metric-change">
+              <i class="material-icons">keyboard_arrow_up</i>
+              4%
+            </div>
+          </div>
         </div>
-        <div class="card-action"><a href="#!">view</a><a href="#!">dismiss</a></div>
+        <div class="card-content">
+          <canvas class="card-chart" id="main-toggle-line-chart" height="300"></canvas>
+        </div>
       </div>
+
+    </div>
+
+    <div class="col l3 s12">
+
       <div class="card">
-        <div class="card-content"><span class="card-title">New User Joined</span>
-          <p>Content</p>
+        <div class="card-toolbar">
+          <div class="card-toolbar-title">Status</div>
         </div>
-        <div class="card-action"><a href="#!">view</a><a href="#!">dismiss</a></div>
+        <div class="card-content">
+          <div class="row row-vertical-center no-margin">
+            <div class="col s12 m6 l12">
+              <canvas id="doughnut-chart"></canvas>
+            </div>
+            <div class="col s12 m6 l12">
+              <div class="chart-legend-wrapper"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col l3 m6 s12">
+
+      <div class="card">
+        <div class="card-stacked">
+          <div class="card-metrics card-metrics-static">
+            <div class="card-metric">
+              <div class="card-metric-title">GEX 3' Prime</div>
+              <div class="card-metric-value">12 samples</div>
+              <div class="card-metric-value">1 projects</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-chart">
+          <canvas id="flush-area-chart-blue" height="100px"></canvas>
+        </div>
+      </div>
+
+    </div>
+    <div class="col l3 m6 s12">
+
+      <div class="card">
+        <div class="card-stacked">
+          <div class="card-metrics card-metrics-static">
+            <div class="card-metric">
+              <div class="card-metric-title">Multiomic</div>
+              <div class="card-metric-value">0 samples</div>
+              <div class="card-metric-value">0 projects</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-chart">
+          <canvas id="flush-area-chart-yellow" height="100px"></canvas>
+        </div>
+      </div>
+
+    </div>
+    <div class="col l3 m6 s12">
+
+      <div class="card">
+        <div class="card-stacked">
+          <div class="card-metrics card-metrics-static">
+            <div class="card-metric">
+              <div class="card-metric-title">5' Prime</div>
+              <div class="card-metric-value">15 samples</div>
+              <div class="card-metric-value">1 projects</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-chart">
+          <canvas id="flush-area-chart-pink" height="100"></canvas>
+        </div>
+      </div>
+
+    </div>
+    <div class="col l3 m6 s12">
+
+      <div class="card">
+        <div class="card-stacked">
+          <div class="card-metrics card-metrics-static">
+            <div class="card-metric">
+              <div class="card-metric-title">Visium</div>
+              <div class="card-metric-value">8 samples</div>
+              <div class="card-metric-value">1 projects</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-chart">
+          <canvas id="flush-area-chart-green" height="100"></canvas>
+        </div>
       </div>
     </div>
 
-  </header>
-  <main>
-    <div class="container">
-      <div class="row equal-height-grid">
-
-        <div class="col l9 s12">
-
-          <div class="card">
-            <div class="card-metrics card-metrics-toggle card-metrics-centered">
-              <div class="card-metric waves-effect active" data-metric="revenue">
-                <div class="card-metric-title">Sequenced</div>
-                <div class="card-metric-value">123,456M</div>
-                <div class="card-metric-change">
-                  <i class="material-icons">keyboard_arrow_up</i>
-                  12%
-                </div>
-              </div>
-              <div class="card-metric waves-effect" data-metric="users">
-                <div class="card-metric-title">Projects</div>
-                <div class="card-metric-value">233</div>
-                <div class="card-metric-change">
-                  <i class="material-icons">keyboard_arrow_up</i>
-                  9%
-                </div>
-              </div>
-              <div class="card-metric waves-effect" data-metric="ctr">
-                <div class="card-metric-title">Processed Samples</div>
-                <div class="card-metric-value">699</div>
-                <div class="card-metric-change">
-                  <i class="material-icons">keyboard_arrow_up</i>
-                  4%
-                </div>
-              </div>
-            </div>
-            <div class="card-content">
-              <canvas class="card-chart" id="main-toggle-line-chart" height="300"></canvas>
-            </div>
-          </div>
-
+    <div class="col l6 m6 s12">
+      <div class="card teal darken-3 white-text">
+        <div class="card-content">
+          <span class="card-title">CPU<i class="material-icons right large">domain</i></span>
+          <p style="color: white;">{{ data["cpu_percent"] }}%</p>
         </div>
-
-        <div class="col l3 s12">
-
-          <div class="card">
-            <div class="card-toolbar">
-              <div class="card-toolbar-title">Status</div>
-            </div>
-            <div class="card-content">
-              <div class="row row-vertical-center no-margin">
-                <div class="col s12 m6 l12">
-                  <canvas id="doughnut-chart"></canvas>
-                </div>
-                <div class="col s12 m6 l12">
-                  <div class="chart-legend-wrapper"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <div class="col l3 m6 s12">
-
-          <div class="card">
-            <div class="card-stacked">
-              <div class="card-metrics card-metrics-static">
-                <div class="card-metric">
-                  <div class="card-metric-title">GEX 3' Prime</div>
-                  <div class="card-metric-value">12 samples</div>
-                  <div class="card-metric-value">1 projects</div>
-                </div>
-              </div>
-            </div>
-            <div class="card-chart">
-              <canvas id="flush-area-chart-blue" height="100px"></canvas>
-            </div>
-          </div>
-
-        </div>
-        <div class="col l3 m6 s12">
-
-          <div class="card">
-            <div class="card-stacked">
-              <div class="card-metrics card-metrics-static">
-                <div class="card-metric">
-                  <div class="card-metric-title">Multiomic</div>
-                  <div class="card-metric-value">0 samples</div>
-                  <div class="card-metric-value">0 projects</div>
-                </div>
-              </div>
-            </div>
-            <div class="card-chart">
-              <canvas id="flush-area-chart-yellow" height="100px"></canvas>
-            </div>
-          </div>
-
-        </div>
-        <div class="col l3 m6 s12">
-
-          <div class="card">
-            <div class="card-stacked">
-              <div class="card-metrics card-metrics-static">
-                <div class="card-metric">
-                  <div class="card-metric-title">5' Prime</div>
-                  <div class="card-metric-value">15 samples</div>
-                  <div class="card-metric-value">1 projects</div>
-                </div>
-              </div>
-            </div>
-            <div class="card-chart">
-              <canvas id="flush-area-chart-pink" height="100"></canvas>
-            </div>
-          </div>
-
-        </div>
-        <div class="col l3 m6 s12">
-
-          <div class="card">
-            <div class="card-stacked">
-              <div class="card-metrics card-metrics-static">
-                <div class="card-metric">
-                  <div class="card-metric-title">Visium</div>
-                  <div class="card-metric-value">8 samples</div>
-                  <div class="card-metric-value">1 projects</div>
-                </div>
-              </div>
-            </div>
-            <div class="card-chart">
-              <canvas id="flush-area-chart-green" height="100"></canvas>
-            </div>
-          </div>
-        </div>
-
-        <div class="col l6 m6 s12">
-          <div class="card teal darken-3 white-text">
-            <div class="card-content">
-              <span class="card-title">CPU<i class="material-icons right large">domain</i></span>
-              <p style="color: white;">{{ data["cpu_percent"] }}%</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col l6 m6 s12">
-          <div class="card teal darken-3 white-text">
-            <div class="card-content">
-              <span class="card-title">Memory<i class="material-icons right large">memory</i></span>
-              <p style="color: white;">{{ data["memory_used"] }}%</p>
-            </div>
-          </div>
-        </div>
-
-  </main>
-  <footer class="page-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col s12 m6">
-          <p>The mission of the Molecular Genomics Core (MGC) is to provide services for industry-standard and state-of-the-art molecular and genomic assays in support of USC Norris investigators working across the continuum of basic, translational, clinical and population sciences.
-            </p>
-            <p><i class="material-icons chevron">location_on</i> 1450 Biggy Street, CA 90012</p>
-        </div>
-        <div class="col s6 m3">
-          <h5>About USC MGC</h5>
-          <ul>
-            <li><a href="https://uscnorriscancer.usc.edu/molecular-genomics-core/">Home page</a></li>
-            <li><a href="https://uscnorriscancer.usc.edu/wp-content/uploads/2021/05/MGC-Price-List_FINAL.pdf">Service</a></li>
-          </ul>
-        </div>
-
-        <div class="col s6 m3">
-          <p>USC Genomics Core, single cell service</p>
-          <h5 black-text>Every sequence makes a tile on path.</p>
-        </div>
-
       </div>
     </div>
-  </footer><!-- Scripts -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="{{ url_for('static', filename='js/materialize.min.js' ) }}"></script>
-  <script src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
 
-  <!-- External libraries -->
+    <div class="col l6 m6 s12">
+      <div class="card teal darken-3 white-text">
+        <div class="card-content">
+          <span class="card-title">Memory<i class="material-icons right large">memory</i></span>
+          <p style="color: white;">{{ data["memory_used"] }}%</p>
+        </div>
+      </div>
+    </div>
 
-  <!-- jqvmap -->
-  <!-- ChartJS -->
-  <script type="text/javascript" src="{{ url_for('static', filename='js/Chart.js' ) }}"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='js/Chart.Financial.js' ) }}"></script>
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.7.0/fullcalendar.min.js"></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.js"></script>
-  <script src="{{ url_for('static', filename='js/imagesloaded.pkgd.min.js' ) }}"></script>
-  <script src="{{ url_for('static', filename='js/masonry.pkgd.min.js' ) }}"></script>
-
-
-  <!-- Initialization script -->
-  <script src="{{ url_for('static', filename='js/admin.js' ) }}"></script>
-  <script src="{{ url_for('static', filename='js/page-scripts/dashboard.js' ) }}"></script>
-  <script src="{{ url_for('static', filename='js/init.js' ) }}"></script>
-</body>
-
-</html>
+    {% endblock content %}
