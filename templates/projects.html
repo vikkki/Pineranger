@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h2 class="section-title">All Projects</h2>
+            </div>    
+            <div class="row">
+                {% for project in data %}
+                <div class="col s6 m4 l4">
+                    <div class="card">
+                        <div class="card-image">
+                            {% if project[3] == "visium" %}
+                            <img id="card_img" src="{{  url_for('static', filename='img/visium.jpg')  }}">
+                            {% else -%}
+                            <img id="card_img" src="{{  url_for('static', filename='img/gem.jpg')  }}">
+                            {% endif %}
+                            <span class="card-title">{{  project[2]  }}</span>
+                        </div>
+                        <div class="card-content">
+                            <p>{{  project  }}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#">Place holder: link</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

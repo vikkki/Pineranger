@@ -3,8 +3,8 @@
 {% block content %}
 <script type="text/javascript">
 
-    function show_div() {
-        let mydiv = document.getElementById("new_note_div").style.visibility = "visible"
+    function show_div(div_id) {
+        let mydiv = document.getElementById(div_id).style.visibility = "visible"
     }
 
 </script>
@@ -39,7 +39,7 @@
 
                     </ul>
                     <br>
-                    <a onclick="show_div()" class="btn-floating waves-effect waves-light red"><i
+                    <a onclick="show_div(div_id='new_note_div')" class="btn-floating waves-effect waves-light red"><i
                             class="material-icons">add</i></a>
 
                     <div class="section no-pad-bot" style="visibility: hidden;" id="new_note_div">

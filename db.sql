@@ -7,3 +7,18 @@ CREATE TABLE posts (
     content TEXT NOT NULL
 
 );
+
+DROP TABLE IF EXISTS projects;
+
+CREATE TABLE projects (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    title TEXT NOT NULL,
+    project_type TEXT NOT NULL DEFAULT "gex3",
+    current_status TEXT NOT NULL DEFAULT "pre-seq",
+    completed INTEGER NOT NULL DEFAULT 1,
+    sample_count INTEGER NOT NULL DEFAULT 0,
+    sample_list tpye TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    reads INTEGER NOT NULL DEFAULT 0
+
+);

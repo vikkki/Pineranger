@@ -20,5 +20,18 @@ cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
             ('GeoMx', 'Start ealier')
             )
 
+cur.execute("INSERT INTO projects (title, project_type) VALUES (?, ?)",
+            ('Lozito Lab 20220512', 'gex3')
+            )
+cur.execute("INSERT INTO projects (title, project_type) VALUES (?, ?)",
+            ('Lozito Lab 20220519', 'gex3')
+            )
+cur.execute("INSERT INTO projects (title, project_type) VALUES (?, ?)",
+            ('Lozito Lab 20210309', 'visium')
+            )
+cur.execute("INSERT INTO projects (title, project_type) VALUES (?, ?)",
+            ('Lu lab 20220102', 'gex3')
+            )
+
 conn.commit()
 conn.close()

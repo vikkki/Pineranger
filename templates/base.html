@@ -22,7 +22,7 @@
         <div class="navbar-fixed">
             <nav class="navbar white">
                 <div class="nav-wrapper">
-                    <a href="#!" class="brand-logo grey-text text-darken-4">Pineranger@USCMGC</a>
+                    <a href="{{ url_for('index')}}" class="brand-logo grey-text text-darken-4">Pineranger@USCMGC</a>
                     <ul id="nav-mobile" class="right">
                         <li class="hide-on-med-and-down"><a href="https://pomofocus.io/">Tomato timer!</a>
                         </li>
@@ -55,7 +55,7 @@
                                 class="material-icons chevron">chevron_left</i></a>
                         <div class="collapsible-body">
                             <ul>
-                                <li><a href="#" class="waves-effect">All tasks<i
+                                <li><a href="{{ url_for('all_projects')}}" class="waves-effect">All Projects<i
                                             class="material-icons">show_chart</i></a></li>
                                 <li><a href="#" class="waves-effect">GEX 3' Prime<i
                                             class="material-icons">chevron_right</i></a></li>
@@ -157,9 +157,12 @@
 
 
     <!-- Initialization script -->
-    <script src="{{ url_for('static', filename='js/page-scripts/dashboard.js' ) }}"></script>
+    
+    
     <script src="{{ url_for('static', filename='js/admin.js' ) }}"></script>
     <script src="{{ url_for('static', filename='js/init.js' ) }}"></script>
+    {% block page_js %}
+    {% endblock page_js %}
 </body>
 
 </html>

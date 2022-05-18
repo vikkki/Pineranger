@@ -1,5 +1,6 @@
+from fileinput import filename
 from http.client import ImproperConnectionState
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, flash, url_for
 from markupsafe import escape
 from psutil import cpu_percent, virtual_memory
 import json
@@ -24,7 +25,17 @@ def get_cpu_percent():
 def get_memory_used():
     return virtual_memory()[2]
 
+def get_db_type_projects(type = "gex3"):
+    conn = sqlite3.connect("notes.db")
+    projects = conn.execute('select * from projects where project_type = ?', (type,)).fetchall()
+    conn.close()
+    return projects
 
+def get_db_all_projects():
+    conn = sqlite3.connect("notes.db")
+    projects = conn.execute('select * from projects order by created desc').fetchall()
+    conn.close()
+    return projects
 
 @app.route('/')
 def index():
@@ -43,16 +54,13 @@ def show_user_profile(username):
     return f'User {escape(username)}'
 
 
-@app.route('/notes')
+@app.route('/notes', methods = ("GET", "POST"))
 def notes():
     conn = get_db_conn()
     notes = conn.execute('select * from posts order by created desc').fetchall()
-    return render_template("notes.html",data = notes)
-
-@app.route("/notes/new", methods = ("GET", "POST"))
-def new_note():
     if request.method == 'POST':
         title = request.form['title']
+        print(title)
         content = request.form['content']
 
         if not title:
@@ -66,9 +74,10 @@ def new_note():
             conn.commit()
             conn.close()
             
-            return redirect(url_for("index"))
+            return redirect(url_for("notes"))
+    return render_template("notes.html",data = notes)
 
-    return render_template("new.html")
+
 
 @app.route('/notes/delete/<note_id>', methods=('POST',))
 def delete_note(note_id):
@@ -78,6 +87,12 @@ def delete_note(note_id):
     conn.commit()
     conn.close()
     return redirect(url_for("notes"))
+
+@app.route('/projects', methods = ("GET",))
+def all_projects():
+    projects = get_db_all_projects()
+    return render_template("projects.html",data = projects)
+
 
 
 json_test = '[{"mm,aa,ww,ss":1,"a":233},{"mm,aa,ww,ss":2,"a":2333}]'

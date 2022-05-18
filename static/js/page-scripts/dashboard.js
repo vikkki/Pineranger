@@ -143,10 +143,12 @@
 
 
     // Doughnut chart
-    //var doughnutTooltip = Object.assign({}, tooltipsOpts);
-    //doughnutTooltip.intersect = true;
-    //doughnutTooltip.callbacks = { footer: percentageFooterCallback };
-    //delete doughnutTooltip.mode;
+
+    var doughnutTooltip = Object.assign({}, tooltipsOpts);
+    doughnutTooltip.intersect = true;
+    doughnutTooltip.callbacks = { footer: percentageFooterCallback };
+    delete doughnutTooltip.mode;
+    
     var d = fetch("history_line_data")
       .then(res => res.json())
       .then(data => {
@@ -162,16 +164,21 @@
         data: {
           labels: ["pre-seq", "bcl", "mkfastq", "count", "delivery"],
           datasets: [{
-            label: 'dataset 1',
+            label: 'data_status',
             data: [12, 19, 4, 15, 22],
             backgroundColor: [chartColorPink, chartColorBlue, chartColorYellow, chartColorGreen, chartColorPurple],
             borderWidth: 0
           }],
         },
         options: {
-          //tooltips: doughnutTooltip,
+          tooltips: doughnutTooltip,
           legendCallback: doughnutLegendCallback,
-          cutoutPercentage: 80
+          cutoutPercentage: 20,
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
         }
       });
       doughnutChart.closest('.card-content').find('.chart-legend-wrapper').append($(doughnutChartJS.generateLegend()));

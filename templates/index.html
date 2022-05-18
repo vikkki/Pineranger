@@ -151,3 +151,7 @@
     </div>
 
     {% endblock content %}
+
+    {% block page_js %}
+    <script src="{{ url_for('static', filename='js/page-scripts/dashboard.js' ) }}"></script>
+    {% endblock page_js %}

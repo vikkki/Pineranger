@@ -507,7 +507,8 @@ var tabLegendCallback = function (chart) {
 
 
     // Doughnut Chart
-    var doughnutChart = $('#doughnut-chart');
+    //var doughnutChart = $('#doughnut-chart');
+
     var doughnutTooltip = Object.assign({}, tooltipsOpts);
     doughnutTooltip.intersect = true;
     doughnutTooltip.callbacks = { footer: percentageFooterCallback };
